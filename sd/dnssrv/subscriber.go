@@ -85,8 +85,7 @@ func (s subscriber) resolve() ([]string, error) {
 	}
 	instances := []string{}
 	for _, addr := range addrs {
-		instances = append(instances, fmt.Sprintf("http://%s", net.JoinHostPort(addr.Target, fmt.Sprint(addr.Port))))
-		for i := 0; i < int(addr.Weight-1); i++ {
+		for i := 0; i < int(addr.Weight); i++ {
 			instances = append(instances, fmt.Sprintf("http://%s", net.JoinHostPort(addr.Target, fmt.Sprint(addr.Port))))
 		}
 	}
